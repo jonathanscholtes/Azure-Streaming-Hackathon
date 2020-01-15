@@ -56,11 +56,11 @@ __Queue__
 
 4. Fill out the Stream Analytics job page with the following information:
 |Setting|Suggested value|Description|
-|--- |--- |--- |
+|----------|-------------|---------------------------------------------------------------------------------|
 |Job name|MyASAJob|Enter a name to identify your Stream Analytics job. Stream Analytics job name can contain alphanumeric characters, hyphens, and underscores only and it must be between 3 and 63 characters long.|
-|Subscription|<Your subscription>|Select the Azure subscription that you want to use for this job.|
+|Subscription|Your subscription|Select the Azure subscription that you want to use for this job.|
 |Resource group|asaquickstart-resourcegroup|Select the same resource group as your IoT Hub.|
-|Location|<Select the region that is closest to your users>|Select geographic location where you can host your Stream Analytics job. Use the location that's closest to your users for better performance and to reduce the data transfer cost.|
+|Location|Select the region that is closest to your users|Select geographic location where you can host your Stream Analytics job. Use the location that's closest to your users for better performance and to reduce the data transfer cost.|
 |Streaming units|1|Streaming units represent the computing resources that are required to execute a job. By default, this value is set to 1. To learn about scaling streaming units, refer to understanding and adjusting streaming units article.|
 |Hosting environment|Cloud|Stream Analytics jobs can be deployed to cloud or edge. Cloud allows you to deploy to Azure Cloud, and Edge allows you to deploy to an IoT Edge device.|
 
@@ -89,13 +89,13 @@ __Queue__
 ![LogicApp](../../images/create-logic-app-settings.png)
 
 |Property|Value|Description|
-|--- |--- |--- |
-|Name|<logic-app-name>|Your logic app name, which can contain only letters, numbers, hyphens (-), underscores (_), parentheses ((, )), and periods (.). This example uses "My-First-Logic-App".|
-|Subscription|<Azure-subscription-name>|Your Azure subscription name|
-|Resource group|<Azure-resource-group-name>|The name for the Azure resource group used to organize related resources. This example uses "My-First-LA-RG".|
-|Location|<Azure-region>|The region where to store your logic app information. This example uses "West US".|
-|Log Analytics|Off|Keep the Off setting for diagnostic logging.|
-||||
+|--------|------|-----------------------------------------------------|
+|Name|logic-app-name|Your logic app name, which can contain only letters, numbers, hyphens (-), underscores (_), parentheses ((, )), and periods (.). This example uses "My-First-Logic-App". |
+|Subscription|Azure-subscription-name|Your Azure subscription name |
+|Resource group|Azure-resource-group-name|The name for the Azure resource group used to organize related resources. This example uses "My-First-LA-RG".|
+|Location|Azure-region|The region where to store your logic app information. This example uses "West US".|
+|Log Analytics|Off|Keep the Off setting for diagnostic logging. |
+
 
 4. After Azure deploys your app, on the Azure toolbar, select Notifications > Go to resource for your deployed logic app.
 
