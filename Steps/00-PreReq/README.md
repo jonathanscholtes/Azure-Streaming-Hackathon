@@ -27,6 +27,10 @@ Azure Event Hubs will be the architecural component for our streaming ingest.
 
 ### [Create an Event Hubs Namespace](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create#create-an-event-hubs-namespace)
 
+We will be using the Standard pricing tier to demonstrate the use of multiple [consumer groups](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features#consumer-groups).
+
+![EventHubPricing](../../images/event_hub_pricing.PNG) 
+
 An Event Hubs namespace provides a unique scoping container, referenced by its fully qualified domain name, in which you create one or more event hubs.
 
 An __Event Hubs namespace__ provides a unique scoping container, referenced by its fully qualified domain name, in which you create one or more event hubs or Kafka topics.
@@ -34,6 +38,18 @@ An __Event Hubs namespace__ provides a unique scoping container, referenced by i
 ### [Create and Event Hub](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create#create-an-event-hub)
 
 __Azure Event Hubs__ is a scalable event processing service that ingests and processes large volumes of events and data, with low latency and high reliability.
+
+__Add Consumer Groups__
+
+After createing the Event Hub we will want to add two consumer groups, one for the hot path and one for the cold path:
+
+Go to Consumer Groups
+
+![EventHubPricing](../../images/event_hub_consumer_group.PNG) 
+
+Add the hot and cold consumer groups
+
+![EventHubPricing](../../images/create_consumer_groups.PNG) 
 
 
 Once you are complete with the prereqs, move on to [Step 1](../01-DataLoad/) if you will be creating a stream with the provided 'mock' data or jump to [Step 2](../02-StreamHot) if loading your own data.
