@@ -40,11 +40,11 @@ A resource group is a logical collection of Azure resources. All resources are d
 
 ```bash
 resourceGroupName=hackathon-$RANDOM
-location = SouthCentralUS
+location=SouthCentralUS
 
 az group create \
    --name $resourceGroupName \
-   --location $location \
+   --location $location 
 ```
 
 ### Resource Group - Use Azure Portal
