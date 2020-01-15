@@ -36,9 +36,9 @@ Azure subscription. If you don't have one, create a [free account](https://azure
 
 A resource group is a logical collection of Azure resources. All resources are deployed and managed in a resource group. To create a resource group:
 
-__Use Azure CLI__
+### Resource Group - Use Azure CLI
 
-```
+```bash
 resourceGroupName=hackathon-$RANDOM
 location = SouthCentralUS
 
@@ -46,17 +46,17 @@ az group create \
    --name $resourceGroupName \
    --location $location \
 ```
-__Use Azure Portal__
-[Create Resource Group](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create#create-a-resource-group)
 
+### Resource Group - Use Azure Portal
+[Create Resource Group](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create#create-a-resource-group)
 
 ## Create and Azure Storage Account
 
 An Azure storage account contains all of your Azure Storage data objects: blobs, files, queues, tables, and disks. Data in your Azure storage account is durable and highly available, secure, and massively scalable. We will use a storage account for our cold path storage and to store alert records.
 
-__Use Azure CLI__
+### Storage - Use Azure CLI
 
-```
+```bash
 accountName=hackathon-$RANDON
 
 az storage account create \
@@ -70,7 +70,7 @@ az storage account create \
 
 Create two containers: __coldstore__ and __streamalerts__.
 
-```
+```bash
 export AZURE_STORAGE_ACCOUNT="<storage account>"
 export AZURE_STORAGE_KEY="<sas key>"
 
@@ -79,7 +79,7 @@ az storage container create --name coldstore
 az storage container create --name streamalerts
 ```
 
-__Use Azure Portal__
+### Storage - Use Azure Portal
 
 [Create Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
 
@@ -103,17 +103,16 @@ An __Event Hubs namespace__ provides a unique scoping container, referenced by i
 
 __Azure Event Hubs__ is a scalable event processing service that ingests and processes large volumes of events and data, with low latency and high reliability.
 
-__Add Consumer Groups__
+#### Add Consumer Groups
 
 After createing the Event Hub we will want to add two consumer groups, one for the hot path and one for the cold path:
 
 Go to Consumer Groups
 
-![EventHubPricing](../../images/event_hub_consumer_group.PNG) 
+![EventHubPricing](../../images/event_hub_consumer_group.PNG)
 
 Add the hot and cold consumer groups
 
-![EventHubPricing](../../images/create_consumer_groups.PNG) 
-
+![EventHubPricing](../../images/create_consumer_groups.PNG)
 
 Once you are complete with the prereqs, move on to [Step 1](../01-DataLoad/) if you will be creating a stream with the provided 'mock' data or jump to [Step 2](../02-StreamHot) if loading your own data.

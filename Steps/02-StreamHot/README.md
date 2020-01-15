@@ -2,7 +2,7 @@
 
 ## Set-Up Service Bus Queue
 
-__Namespace__
+### Namespace
 
 To begin using Service Bus messaging entities in Azure, you must first create a namespace with a name that is unique across Azure. A namespace provides a scoping container for addressing Service Bus resources within your application.
 
@@ -13,7 +13,6 @@ To create a namespace:
 2. In the left navigation pane of the portal, select + Create a resource, select Integration, and then select Service Bus.
 
 ![ServiceBus](../../images/create-resource-service-bus-menu.png)
-
 
 3. In the Create namespace dialog, do the following steps:
 
@@ -31,7 +30,7 @@ To create a namespace:
 
 ![ServiceBus](../../images/create-namespace.png)
 
-__Queue__
+### Queue
 
 1. On the Service Bus Namespace page, select Queues in the left navigational menu.
 
@@ -118,12 +117,8 @@ The Logic Apps Designer opens and shows a page with an introduction video and co
 
 ![LogicApp](../../images/logic_apps_fill_out_service_bus.PNG)
 
-
 **Our Logic App will parse the JSON alert message from the Service Bus Queue and then perform an alert step. The workflow below uses Twillio to send SMS texts**
-
 
 ![LogicApp](../../images/alert_logic_app.PNG)
 
-
 ![LogicApp](../../images/phone_sms.jpg)
-

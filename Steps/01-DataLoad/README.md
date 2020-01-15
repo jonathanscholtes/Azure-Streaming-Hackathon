@@ -2,15 +2,13 @@
 
 Please use this guide to load the driver data and the Logic App to simulate a stream.
 
-
 ## Loading Data into Azure SQL DB
 
 ### Create an Azure SQL Server
 
 Run the following Azure CLI using Cloud Shell to quickly create an Azure SQL Server
 
-```
-
+```bash
 resourceGroupName=
 location=SouthCentralUS
 adminLogin=
@@ -43,16 +41,15 @@ az sql server firewall-rule create \
    --start-ip-address $startip \
    --end-ip-address $endip
 
-
 ```
 
 ### Import BACPAC to create Database
 
 Once your Azure SQL Server is created you can quickly create a database using the Driver and Event data by importing a BACPAC file.
 
-__Copy BACPAC file to Storage Account__
+#### Copy BACPAC file to Storage Account
 
-```
+```bash
 export AZURE_STORAGE_ACCOUNT="<storage account>"
 export AZURE_STORAGE_KEY="<sas key>"
 container=bacpac
@@ -68,7 +65,7 @@ az storage blob upload \
     --file 'Azure-Streaming-Hackathon/Steps/01-DataLoad/dependencies/TransportEvents-Hack_1_14.bacpac'
 ```
 
-__Import BACPAC__
+#### Import BACPAC
 
 1. To import from a BACPAC file into a new single database using the Azure portal, open the appropriate database server page and then, on the toolbar, select Import database.
 
@@ -95,7 +92,7 @@ _[Import BACPAC](https://docs.microsoft.com/en-us/azure/sql-database/sql-databas
 
 Open the Azure Cloud Shell to Bash and run
 
-```
+```bash
 resourceGroupName='<set>'
 name='EventCreateLogicApp'
 templatefile='Azure-Streaming-Hackathon/Steps/01-DataLoad/dependencies/template.json'
