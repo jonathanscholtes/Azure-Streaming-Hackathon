@@ -6,6 +6,11 @@ Please use this guide to load the driver and driver event data for the Azure Str
 
 ## Loading the driver data
 
+The following bach commands will be ran using the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview). 
+
+Launch from Azure portal using the Cloud Shell icon
+!(cloud shell)[../../images/portal-launch-icon.png]
+
 ## Create a Single Instance Azure SQL Database
 
 - Create a single instance Azure SQL Database, [follow steps here](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal).
