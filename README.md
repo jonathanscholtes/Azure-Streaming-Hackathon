@@ -6,7 +6,7 @@ __Objectives:__
 - Develop a Lambda solution using Azure Stream Analytics to use a 'hot' path for immediate processing and a 'cold' path for data archiving.
 - Use an Azure SQL DB reference dataset during stream processing
 
-![hackathon design](image/hackathon_design.png)
+![hackathon design](/images/hackathon_design.png)
 
 _see_ _[Azure Big Data Lambda Architectures](https://docs.microsoft.com/en-us/azure/architecture/data-guide/big-data/#lambda-architecture)_
 
