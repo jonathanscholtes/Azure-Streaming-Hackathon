@@ -1,7 +1,12 @@
 
-## Requiring Mock Data
+## Creating a stream with driver data
+ 
+Please use this guide to load the driver and driver event data for the Azure Streaming Hackathon.
 
-###  Data for Messages
+
+## Loading the driver data
+
+## Create a Single Instance Azure SQL Database
 
 - Create a single instance Azure SQL Database, [follow steps here](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal).
 
