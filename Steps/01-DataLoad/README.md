@@ -69,7 +69,7 @@ __Copy BACPAC file__
 ```
 export AZURE_STORAGE_ACCOUNT="<storage account"
 export AZURE_STORAGE_KEY="<sas key>"
-container=bacpc
+container=bacpac
 
 az storage container create --name $container
 
@@ -98,7 +98,7 @@ __Import BACPAC__
 
 5. To monitor an import's progress, open the database's server page, and, under Settings, select Import/Export history. When successful, the import has a Completed status.
 
-![BACPAC](../../images/bacpac4.png)
+![BACPAC](../../images/bacpac5.png)
 
 5. To verify the database is live on the database server, select SQL databases and verify the new database is Online.
 
@@ -107,17 +107,14 @@ _[Import BACPAC](https://docs.microsoft.com/en-us/azure/sql-database/sql-databas
 
 ### Create Messages with Azure Logic Apps
 
-We will use the Cloud Shell to quickly create an Azure Logic App to send our Event Hub Messages.
-
-- Open the cloud shell to Bash.
-- Import [dependencies/parameters.json](dependencies/)
-- Modify the resource group in the shell script below, then run in the Cloud Shell.
+Open the Azure Cloud Shell to Bash and run
 
 ```
-resourceGroupName=''
+resourceGroupName='<set>'
 name='EventCreateLogicApp'
-templatefile='template.json'
+templatefile='Azure-Streaming-Hackathon/Steps/01-DataLoad/dependencies/template.json'
 
+git clone https://github.com/Jscholtes128/Azure-Streaming-Hackathon.git
 
 az group deployment create \
   --name $name\
@@ -127,3 +124,22 @@ az group deployment create \
 
 Once the Azure Logic App is created we will need to manually resolve the missing SQL and Event Hub connections.
 
+![WorkFlowErrors](../../images/logic_app_error.PNG)
+
+We will have to add new SQL and Event Hub Connections by clicking the connection error then selecting change connection.
+
+![WorkFlowErrors](../../images/logic_app_sql_connection.PNG)
+
+Select __Add New__
+
+![WorkFlowErrors](../../images/logic_app_add_connection.PNG)
+
+The enter the connection properties.
+
+![WorkFlowErrors](../../images/logic_app_add_sql_connection.PNG)
+
+Complete these steps for the remaining connection errors to start the Logic App.
+
+![WorkFlowErrors](../../images/logic_app_message_load.PNG)
+
+Once you are complete with this step, move on to [Step 2](../02-StreamHot/)
