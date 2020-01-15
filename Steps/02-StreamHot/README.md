@@ -55,8 +55,9 @@ __Queue__
 3. Select Analytics > Stream Analytics job from the results list.
 
 4. Fill out the Stream Analytics job page with the following information:
+
 |Setting|Suggested value|Description|
-|----------|-------------|---------------------------------------------------------------------------------|
+|-----------------------|---------------------------------|---------------------------------------------------------------------------------|
 |Job name|MyASAJob|Enter a name to identify your Stream Analytics job. Stream Analytics job name can contain alphanumeric characters, hyphens, and underscores only and it must be between 3 and 63 characters long.|
 |Subscription|Your subscription|Select the Azure subscription that you want to use for this job.|
 |Resource group|asaquickstart-resourcegroup|Select the same resource group as your IoT Hub.|
@@ -68,9 +69,22 @@ __Queue__
 
 ### Inputs
 
+Add Inputs for our Event Hub and for the Reference Driver data loaded during our last step.
+
+**What Consumer Group will we use?**
+
+![Stream](hot_stream_inputs.PNG)
+
 ### Outputs
 
-### Example Query
+Add out Service Bus Output for alerting
+![SteamOut](hot_stream_outputs.PNG)
+
+**Let's record the alerts to an Azure Storage Account**
+
+
+ Please refer to the [Azure Stream Analytics Query docs](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-stream-analytics-query-patterns) to deelop your notification and reference join query.
+
 
 ## Azure Logic Apps for Notifications
 
@@ -101,5 +115,8 @@ __Queue__
 
 Or, you can find and select your logic app by typing the name in the search box.
 
-The Logic Apps Designer opens and shows a page with an introduction video and commonly used triggers. 
+The Logic Apps Designer opens and shows a page with an introduction video and commonly used triggers. We will select 'when service bus message received'
 
+![LogicApp](../../images/service_bus_msg_received.PNG)
+
+![LogicApp](../../images/logic_apps_fill_out_service_bus.PNG)
