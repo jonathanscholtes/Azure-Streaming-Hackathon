@@ -1,5 +1,18 @@
 # Hackathon Prerequisites 
 
+The following resources are implemended during the hackathon, please ensure your have the ability to create in your subscription or resource group:
+
+- Azure Storage Account - Blob 
+- Azure Event Hubs
+- Azure Stream Analytics
+- Azure Logic Apps
+- Azure Service Bus
+- Azure SQL Database
+
+_A [Twillio](https://www.twilio.com/) account is used in this tutorial to send SMS text for alerting._
+
+The following will need to be completed before proceeding to step 1
+
 ## Azure Portal
 
 Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/en-us/free/) before you begin.
