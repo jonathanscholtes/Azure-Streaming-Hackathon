@@ -1,0 +1,136 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_streamprocessing_name": {
+            "defaultValue": "streamprocessing",
+            "type": "String"
+        },
+        "connections_eventhubs_externalid": {
+            "defaultValue": "/subscriptions/0a6d383c-9ce6-490d-89b8-47e6231192c3/resourceGroups/Transport/providers/Microsoft.Web/connections/eventhubs",
+            "type": "String"
+        },
+        "connections_sql_1_externalid": {
+            "defaultValue": "/subscriptions/0a6d383c-9ce6-490d-89b8-47e6231192c3/resourceGroups/Transport/providers/Microsoft.Web/connections/sql-1",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[parameters('workflows_streamprocessing_name')]",
+            "location": "centralus",
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        },
+                        "run": {
+                            "defaultValue": "\"\"",
+                            "type": "String"
+                        }
+                    },
+                    "triggers": {
+                        "Recurrence": {
+                            "recurrence": {
+                                "frequency": "Minute",
+                                "interval": 1
+                            },
+                            "type": "Recurrence"
+                        }
+                    },
+                    "actions": {
+                        "For_each": {
+                            "foreach": "@body('Get_rows_(V2)')?['value']",
+                            "actions": {
+                                "Send_event": {
+                                    "runAfter": {},
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "body": {
+                                            "ContentData": "@{base64(concat(items('For_each')?['driverId'],items('For_each')?['firstName']))}"
+                                        },
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['eventhubs']['connectionId']"
+                                            }
+                                        },
+                                        "method": "post",
+                                        "path": "/@{encodeURIComponent('test')}/events"
+                                    }
+                                },
+                                "Update_row_(V2)": {
+                                    "runAfter": {
+                                        "Send_event": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "body": {
+                                            "processed": "@{utcNow()}"
+                                        },
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['sql']['connectionId']"
+                                            }
+                                        },
+                                        "method": "patch",
+                                        "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('transportsrv.database.windows.net'))},@{encodeURIComponent(encodeURIComponent('default'))}/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[Events]'))}/items/@{encodeURIComponent(encodeURIComponent(items('For_each')?['eventid']))}"
+                                    }
+                                }
+                            },
+                            "runAfter": {
+                                "Get_rows_(V2)": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Foreach"
+                        },
+                        "Get_rows_(V2)": {
+                            "runAfter": {},
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['sql']['connectionId']"
+                                    }
+                                },
+                                "method": "get",
+                                "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('default'))},@{encodeURIComponent(encodeURIComponent('default'))}/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[Events]'))}/items",
+                                "queries": {
+                                    "$filter": "Processed  eq null",
+                                    "$top": 1
+                                }
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "eventhubs": {
+                                "connectionId": "[parameters('connections_eventhubs_externalid')]",
+                                "connectionName": "eventhubs",
+                                "id": "/subscriptions/0a6d383c-9ce6-490d-89b8-47e6231192c3/providers/Microsoft.Web/locations/centralus/managedApis/eventhubs"
+                            },
+                            "sql": {
+                                "connectionId": "[parameters('connections_sql_1_externalid')]",
+                                "connectionName": "sql-1",
+                                "id": "/subscriptions/0a6d383c-9ce6-490d-89b8-47e6231192c3/providers/Microsoft.Web/locations/centralus/managedApis/sql"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
