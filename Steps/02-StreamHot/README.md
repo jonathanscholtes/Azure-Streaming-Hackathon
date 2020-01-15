@@ -1,4 +1,4 @@
-# Stream Processing with Azure Stream Analaytics - Hot Path
+# Stream Processing with Azure Stream Analytics - Hot Path
 
 ## Set-Up Service Bus Queue
 
@@ -70,12 +70,12 @@ Add Inputs for our Event Hub and for the Reference Driver data loaded during our
 
 **What Consumer Group will we use?**
 
-![Stream](hot_stream_inputs.PNG)
+![Stream](../../images/hot_stream_inputs.PNG)
 
 ### Outputs
 
 Add out Service Bus Output for alerting
-![SteamOut](hot_stream_outputs.PNG)
+![SteamOut](../../images/hot_stream_outputs.PNG)
 
 **Let's record the alerts to an Azure Storage Account**
 
@@ -125,5 +125,5 @@ The Logic Apps Designer opens and shows a page with an introduction video and co
 ![LogicApp](../../images/alert_logic_app.PNG)
 
 
-![LogicApp](../../images/phone_sms.jpg.PNG)
+![LogicApp](../../images/phone_sms.jpg)
 

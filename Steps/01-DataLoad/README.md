@@ -9,7 +9,7 @@ Please use this guide to load the driver data and the Logic App to simulate a st
 
 ## Loading Driver Data
 
-### Create a single instalce Azure SQL Database
+### Create a single instance Azure SQL Database
 
 Run the following Azure CLI using Cloud Shell to quickly create an Azure SQL Server
 
@@ -112,7 +112,7 @@ az group deployment create \
   --template-file $templatefile 
 ```
 
-Once the Azure Logic App is created we will need to manually resolve the missing SQL and Event Hub connections.
+Once the Azure Logic App is created, we will need to manually resolve the missing SQL and Event Hub connections.
 
 ![WorkFlowErrors](../../images/logic_app_error.PNG)
 

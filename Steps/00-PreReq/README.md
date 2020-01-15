@@ -1,6 +1,6 @@
 # Hackathon Prerequisites 
 
-The following resources are implemended during the hackathon, please ensure your have the ability to create in your subscription or resource group:
+The following resources are implemended during the hackathon, please ensure you can create in your subscription or resource group:
 
 - Azure Storage Account - Blob 
 - Azure Event Hubs
@@ -22,7 +22,7 @@ Launch from Azure portal using the Cloud Shell icon
 
 Select __Bash__
 
-![cloud shell](../../images/poverview-choices.png)
+![cloud shell](../../images/overview-choices.png)
 
 ## Setting-Up
 
