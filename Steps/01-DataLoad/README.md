@@ -1,15 +1,11 @@
+# Load data for stream reference and to simulate stream
 
-## Simulating a Stream with Driver Data
- 
 Please use this guide to load the driver data and the Logic App to simulate a stream.
 
 
+## Loading Data into Azure SQL DB
 
-
-
-## Loading Driver Data
-
-### Create a single instance Azure SQL Database
+### Create an Azure SQL Server
 
 Run the following Azure CLI using Cloud Shell to quickly create an Azure SQL Server
 
@@ -50,14 +46,14 @@ az sql server firewall-rule create \
 
 ```
 
-### Import BACPAC
+### Import BACPAC to create Database
 
 Once your Azure SQL Server is created you can quickly create a database using the Driver and Event data by importing a BACPAC file.
 
-__Copy BACPAC file__
+__Copy BACPAC file to Storage Account__
 
 ```
-export AZURE_STORAGE_ACCOUNT="<storage account"
+export AZURE_STORAGE_ACCOUNT="<storage account>"
 export AZURE_STORAGE_KEY="<sas key>"
 container=bacpac
 
@@ -95,7 +91,7 @@ __Import BACPAC__
 _[Import BACPAC](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-import?tabs=azure-powershell) into a Azure SQL Database_
 
 
-### Create Messages with Azure Logic Apps
+### Use Azure Logic Apps to Simulate Stream
 
 Open the Azure Cloud Shell to Bash and run
 

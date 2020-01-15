@@ -1,8 +1,11 @@
+![hackathon design](/images/hackathon.jpg)
+
 # Azure Streaming Hackathon
-Design a Lambda architecture to capture data for batch processing and take immediate action on a real-time data stream to send alerts.
+
+Let’s get hands-on with implementing a lambda architecture in Azure using Azure Stream Analytics and Azure Event Hubs. We’ll send-out real-time notification against our real-time stream while preserving all the data for future discovery and analytics.
 
 __Objectives:__
-- Develop real-time SMS alerting for speeding drivers with Azure Event Hubs, Stream Analytics, Service Bus and Logic Apps.
+- Implement real-time alerting with Azure Event Hubs, Stream Analytics, Service Bus and Logic Apps.
 - Develop a Lambda solution using Azure Stream Analytics to use a 'hot' path for immediate processing and a 'cold' path for data archiving.
 - Use an Azure SQL DB reference dataset during stream processing
 
