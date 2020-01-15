@@ -4,17 +4,7 @@
 Please use this guide to load the driver data and the Logic App to simulate a stream.
 
 
-## Using Cloud Shell
 
-The following bach commands will be ran using the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview). 
-
-Launch from Azure portal using the Cloud Shell icon
-
-![cloud shell](../../images/portal-launch-icon.png)
-
-Select __Bash__
-
-![cloud shell](../../images/poverview-choices.png)
 
 
 ## Loading Driver Data

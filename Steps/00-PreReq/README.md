@@ -8,8 +8,23 @@ The following resources are implemended during the hackathon, please ensure your
 - Azure Logic Apps
 - Azure Service Bus
 - Azure SQL Database
+- Azure Cloud Shell
 
 _A [Twillio](https://www.twilio.com/) account is used in this tutorial to send SMS text for alerting._
+
+## Using Cloud Shell
+
+The following bach commands will be ran using the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview). 
+
+Launch from Azure portal using the Cloud Shell icon
+
+![cloud shell](../../images/portal-launch-icon.png)
+
+Select __Bash__
+
+![cloud shell](../../images/poverview-choices.png)
+
+## Setting-Up
 
 The following will need to be completed before proceeding to step 1
 
@@ -17,9 +32,58 @@ The following will need to be completed before proceeding to step 1
 
 Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/en-us/free/) before you begin.
 
-## [Create Resource Group](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create#create-a-resource-group)
+## Create a Resource Group for the Hack
 
 A resource group is a logical collection of Azure resources. All resources are deployed and managed in a resource group. To create a resource group:
+
+__Use Azure CLI__
+
+```
+resourceGroupName=hackathon-$RANDOM
+location = SouthCentralUS
+
+az group create \
+   --name $resourceGroupName \
+   --location $location \
+```
+__Use Azure Portal__
+[Create Resource Group](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create#create-a-resource-group)
+
+
+## Create and Azure Storage Account
+
+An Azure storage account contains all of your Azure Storage data objects: blobs, files, queues, tables, and disks. Data in your Azure storage account is durable and highly available, secure, and massively scalable. We will use a storage account for our cold path storage and to store alert records.
+
+__Use Azure CLI__
+
+```
+accountName=hackathon-$RANDON
+
+az storage account create \
+    --name $accountName \
+    --resource-group $resourceGroupName \
+    --location $location \
+    --sku Standard_LRS \
+    --kind StorageV2
+
+```
+
+Create two containers: __coldstore__ and __streamalerts__.
+
+```
+export AZURE_STORAGE_ACCOUNT="<storage account>"
+export AZURE_STORAGE_KEY="<sas key>"
+
+az storage container create --name coldstore
+
+az storage container create --name streamalerts
+```
+
+__Use Azure Portal__
+
+[Create Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
+
+Create two containers using the portal: __coldstore__ and __streamalerts__.
 
 ## Azure Event Hubs
 

@@ -1,7 +1,4 @@
-## Stream Processing with Azure Stream Analaytics - Hot Path
-
-## Set-up the Event Hub Consumer Groups
-
+# Stream Processing with Azure Stream Analaytics - Hot Path
 
 ## Set-Up Service Bus Queue
 
@@ -120,3 +117,13 @@ The Logic Apps Designer opens and shows a page with an introduction video and co
 ![LogicApp](../../images/service_bus_msg_received.PNG)
 
 ![LogicApp](../../images/logic_apps_fill_out_service_bus.PNG)
+
+
+**Our Logic App will parse the JSON alert message from the Service Bus Queue and then perform an alert step. The workflow below uses Twillio to send SMS texts**
+
+
+![LogicApp](../../images/alert_logic_app.PNG)
+
+
+![LogicApp](../../images/phone_sms.jpg.PNG)
+
