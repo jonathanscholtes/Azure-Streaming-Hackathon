@@ -20,8 +20,6 @@ _[Azure Stream Analytics Lambda Architecture](https://docs.microsoft.com/en-us/a
 
 Get all resources set-up to begin loading data for the Azure Stream Analytics Lambda Hack
 
-## Hackathon Steps
-
 ## [Step 1-Streaming Data and Reference Data](Steps/01-DataLoad/)
 
 Simulate a stream of driver event data using Azure SQL DB and and Azure Logic App
