@@ -6,8 +6,8 @@
             "defaultValue": "streamprocessing",
             "type": "String"
         },
-        "connections_eventhubs_externalid": {
-            "defaultValue": "/subscriptions/0a6d383c-9ce6-490d-89b8-47e6231192c3/resourceGroups/Transport/providers/Microsoft.Web/connections/eventhubs",
+        "connections_eventhubs_1_externalid": {
+            "defaultValue": "/subscriptions/0a6d383c-9ce6-490d-89b8-47e6231192c3/resourceGroups/Transport/providers/Microsoft.Web/connections/eventhubs-1",
             "type": "String"
         },
         "connections_sql_1_externalid": {
@@ -50,20 +50,38 @@
                         "For_each": {
                             "foreach": "@body('Get_rows_(V2)')?['value']",
                             "actions": {
-                                "Send_event": {
+                                "Select": {
                                     "runAfter": {},
+                                    "type": "Select",
+                                    "inputs": {
+                                        "from": "@body('Get_rows_(V2)')?['value']",
+                                        "select": {
+                                            "driverid": "@items('For_each')?['driverid']",
+                                            "eventdate": "@items('For_each')?['eventdate']",
+                                            "eventid": "@items('For_each')?['eventid']",
+                                            "eventtime": "@items('For_each')?['eventtime']",
+                                            "speed": "@items('For_each')?['speed']"
+                                        }
+                                    }
+                                },
+                                "Send_event": {
+                                    "runAfter": {
+                                        "Select": [
+                                            "Succeeded"
+                                        ]
+                                    },
                                     "type": "ApiConnection",
                                     "inputs": {
                                         "body": {
-                                            "ContentData": "@{base64(concat(items('For_each')?['driverId'],items('For_each')?['firstName']))}"
+                                            "ContentData": "@{base64(body('Select'))}"
                                         },
                                         "host": {
                                             "connection": {
-                                                "name": "@parameters('$connections')['eventhubs']['connectionId']"
+                                                "name": "@parameters('$connections')['eventhubs_1']['connectionId']"
                                             }
                                         },
                                         "method": "post",
-                                        "path": "/@{encodeURIComponent('test')}/events"
+                                        "path": "/@{encodeURIComponent('spireon_data')}/events"
                                     }
                                 },
                                 "Update_row_(V2)": {
@@ -117,9 +135,9 @@
                 "parameters": {
                     "$connections": {
                         "value": {
-                            "eventhubs": {
-                                "connectionId": "[parameters('connections_eventhubs_externalid')]",
-                                "connectionName": "eventhubs",
+                            "eventhubs_1": {
+                                "connectionId": "[parameters('connections_eventhubs_1_externalid')]",
+                                "connectionName": "eventhubs-1",
                                 "id": "/subscriptions/0a6d383c-9ce6-490d-89b8-47e6231192c3/providers/Microsoft.Web/locations/centralus/managedApis/eventhubs"
                             },
                             "sql": {
