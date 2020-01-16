@@ -16,5 +16,13 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 # Define environment variable
 ENV NAME World
 
+ENV EVENT_HUB_CONNECTION_STR ''
+ENV EVENT_HUB_NAME ''
+ENV COSMOS_ACCOUNT_NAME ''
+ENV COSMOS_PASSWORD ''
+ENV COSMOS_DATABASE ''
+ENV COSMOS_COLLECTION ''
+
+
 # Run app.py when the container launches
 CMD ["python", "monitor_mongo.py"]
